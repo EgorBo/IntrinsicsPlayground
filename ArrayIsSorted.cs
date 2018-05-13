@@ -7,17 +7,16 @@ namespace IntrinsicsPlayground
 {
 	public class ArrayIsSorted
 	{
-        int[] testArray;
+		int[] testArray;
 
 		[GlobalSetup]
 		public void GlobalSetup()
 		{
 			const int count = 1024 * 32;
 			testArray = Enumerable.Range(0, count).ToArray();
-
 		}
 
-        [Benchmark(Baseline = true)]
+		[Benchmark(Baseline = true)]
 		public bool IsSorted_Simple()
 		{
 			return IsSorted_Simple(testArray);
@@ -29,7 +28,7 @@ namespace IntrinsicsPlayground
 			return IsSorted_Simple2(testArray);
 		}
 
-        [Benchmark]
+		[Benchmark]
 		public bool IsSorted_Sse41()
 		{
 			return IsSorted_Sse41(testArray);
@@ -43,7 +42,7 @@ namespace IntrinsicsPlayground
 
 		public static bool IsSorted_Simple(int[] array)
 		{
-            if (array.Length < 2)
+			if (array.Length < 2)
 				return true;
 
 			for (int i = 0; i < array.Length - 1; i++)
@@ -71,40 +70,40 @@ namespace IntrinsicsPlayground
 			return true;
 		}
 
-        public static unsafe bool IsSorted_Sse41(int[] array)
-        {
-            if (array.Length < 2)
-                return true;
+		public static unsafe bool IsSorted_Sse41(int[] array)
+		{
+			if (array.Length < 2)
+				return true;
 
 			if (!Sse41.IsSupported) //no SSE41 support
 				return IsSorted_Simple2(array);
 
-            int i = 0;
-            fixed (int* ptr = &array[0])
-            {
-                if (array.Length > 4)
-                {
-                    for (; i < array.Length - 4; i += 4) // 8 for AVX2 and 16 for AVX512
-                    {
-                        Vector128<int> curr = Sse2.LoadVector128(ptr + i);
-                        Vector128<int> next = Sse2.LoadVector128(ptr + i + 1);
-                        Vector128<int> mask = Sse2.CompareGreaterThan(curr, next);
-                        if (!Sse41.TestAllZeros(mask, mask))
-                            return false;
-                    }
+			int i = 0;
+			fixed (int* ptr = &array[0])
+			{
+				if (array.Length > 4)
+				{
+					for (; i < array.Length - 4; i += 4) // 8 for AVX2 and 16 for AVX512
+					{
+						Vector128<int> curr = Sse2.LoadVector128(ptr + i);
+						Vector128<int> next = Sse2.LoadVector128(ptr + i + 1);
+						Vector128<int> mask = Sse2.CompareGreaterThan(curr, next);
+						if (!Sse41.TestAllZeros(mask, mask))
+							return false;
+					}
 
-                }
-            }
+				}
+			}
 
-            for (; i < array.Length - 1; i++)
-            {
-                if (array[i] > array[i + 1])
-                    return false;
-            }
-            return true;
-        }
+			for (; i < array.Length - 1; i++)
+			{
+				if (array[i] > array[i + 1])
+					return false;
+			}
+			return true;
+		}
 
-		static unsafe bool IsSorted_AVX2(int[] array)
+		public static unsafe bool IsSorted_AVX2(int[] array)
 		{
 			if (array.Length < 2)
 				return true;

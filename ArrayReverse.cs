@@ -7,21 +7,21 @@ namespace IntrinsicsPlayground
 {
     public class ArrayReverse
     {
-		[Benchmark(Baseline = true)]
-		public int[] Reverse_BCL()
-		{
-			var testArray = Enumerable.Range(0, 1024 * 32).ToArray();
-			Array.Reverse(testArray, 0, testArray.Length);
-			return testArray;
-		}
+        [Benchmark(Baseline = true)]
+        public int[] Reverse_BCL()
+        {
+            var testArray = Enumerable.Range(0, 1024 * 32).ToArray();
+            Array.Reverse(testArray, 0, testArray.Length);
+            return testArray;
+        }
 
-		[Benchmark]
-		public int[] Reverse_SSE()
-		{
-			var testArray = Enumerable.Range(0, 1024 * 32).ToArray();
-			Reverse_SSE(testArray);
-			return testArray;
-		}
+        [Benchmark]
+        public int[] Reverse_SSE()
+        {
+            var testArray = Enumerable.Range(0, 1024 * 32).ToArray();
+            Reverse_SSE(testArray);
+            return testArray;
+        }
 
         public static unsafe void Reverse_SSE(int[] array) // also for float, double, byte, etc
         {
