@@ -1,5 +1,4 @@
-﻿
-using System.Linq;
+﻿using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Runtime.Intrinsics;
 using System.Runtime.Intrinsics.X86;
@@ -9,33 +8,33 @@ namespace IntrinsicsPlayground
 {
     public class ArrayMax
     {
-        int[] testArray;
+        int[] _testArray;
 
         [GlobalSetup]
         public void GlobalSetup()
         {
             const int count = 1024 * 32;
             var range = Enumerable.Range(0, count);
-            testArray = range.Concat(range.Reverse()).ToArray();
+            _testArray = range.Concat(range.Reverse()).ToArray();
         }
 
         [Benchmark]
         public int Max_LINQ()
         {
             // LINQ is so slow :(
-            return testArray.Max();
-        }
-
-        [Benchmark(Baseline = true)]
-        public int Max_Simple()
-        {
-            return Max_Simple(testArray);
+            return _testArray.Max();
         }
 
         [Benchmark]
-        public int Max_AVX()
+        public int Max_Simple()
         {
-            return Max_AVX(testArray);
+            return Max_Simple(_testArray);
+        }
+
+        [Benchmark(Baseline = true)]
+        public int Max_AVX2()
+        {
+            return Max_AVX2(_testArray);
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -51,10 +50,13 @@ namespace IntrinsicsPlayground
             return max;
         }
 
-        public static unsafe int Max_AVX(int[] array)
+        public static unsafe int Max_AVX2(int[] array)
         {
             if (!Avx2.IsSupported)
                 return Max_Simple(array);
+
+            if (array == null)
+                ThrowHelper.ArgumentNullException();
 
             Vector256<int> max = Avx.SetAllVector256<int>(int.MinValue);
             fixed (int* ptr = &array[0])

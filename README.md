@@ -3,22 +3,26 @@
 My toys to play with intrinsics in pure C# (see `System.Runtime.Intrinsics.Experimental`)
 
 **1. ArraySum**
-Find sum of elements in an array of floats 
-![alt text](ArraySum.png)
 
-**2. ArrayMax**
-Find max element in an array of ints 
-![alt text](ArrayMax.png)
+Sum of elements in an array of floats 
+![alt text](Screenshots/ArraySum.png)
 
-**3. ArrayIsSorted**
+**2. ArrayEqual**
+
+Are arrays of doubles equal?
+![alt text](Screenshots/ArrayEqual.png)
+
+**3. ArrayMax**
+
+Max element in an array of ints 
+![alt text](Screenshots/ArrayMax.png)
+
+**4. ArrayIsSorted**
+
 Check if an array is sorted or not
-![alt text](ArrayIsSorted.png)
+![alt text](Screenshots/ArrayIsSorted.png)
 
-**4. ArrayReverse**
+**5. ArrayReverse**
+
 Reverse all elements in an array
-![alt text](ArrayReverse.png)
-
-**5. ArrayEqual**
-Are arrays equal?
-**WRONG! TODO: fix**
-![alt text](ArrayEqual.png)
+![alt text](Screenshots/ArrayReverse.png)

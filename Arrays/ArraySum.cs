@@ -7,38 +7,32 @@ namespace IntrinsicsPlayground
 {
     public class ArraySum
     {
-        float[] testArray;
+        float[] _testArray;
 
         [GlobalSetup]
         public void GlobalSetup()
         {
             const int count = 1024 * 32;
-            testArray = Enumerable.Range(0, count).Select(i => (float)i).ToArray();
+            _testArray = Enumerable.Range(0, count).Select(i => (float)i).ToArray();
         }
 
         [Benchmark]
         public float Sum_LINQ()
         {
             // LINQ is so slow :(
-            return testArray.Sum();
-        }
-
-        [Benchmark(Baseline = true)]
-        public float Sum_Simple()
-        {
-            return Sum_Simple(testArray);
+            return _testArray.Sum();
         }
 
         [Benchmark]
-        public float Sum_AVX()
+        public float Sum_Simple()
         {
-            return Sum_AVX(testArray);
+            return Sum_Simple(_testArray);
         }
 
-        //[Benchmark]
-        public float Sum_AVX_stackalloc()
+        [Benchmark(Baseline = true)]
+        public float Sum_AVX()
         {
-            return Sum_AVX_stackalloc(testArray);
+            return Sum_AVX(_testArray);
         }
 
         public static float Sum_Simple(float[] array)

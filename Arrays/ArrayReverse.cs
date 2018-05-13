@@ -7,7 +7,7 @@ namespace IntrinsicsPlayground
 {
     public class ArrayReverse
     {
-        [Benchmark(Baseline = true)]
+        [Benchmark]
         public int[] Reverse_BCL()
         {
             var testArray = Enumerable.Range(0, 1024 * 32).ToArray();
@@ -15,7 +15,7 @@ namespace IntrinsicsPlayground
             return testArray;
         }
 
-        [Benchmark]
+        [Benchmark(Baseline = true)]
         public int[] Reverse_SSE()
         {
             var testArray = Enumerable.Range(0, 1024 * 32).ToArray();
@@ -26,7 +26,7 @@ namespace IntrinsicsPlayground
         public static unsafe void Reverse_SSE(int[] array) // also for float, double, byte, etc
         {
             if (array == null)
-                throw new ArgumentNullException(nameof(array));
+                ThrowHelper.ArgumentNullException();
 
             int i = 0, len = array.Length;
             const int batchSize = 4; // 8/16 for AVX2/AVX512
