@@ -20,4 +20,5 @@ Reverse all elements in an array
 
 **5. ArrayEqual**
 Are arrays equal?
+**WRONG! TODO: fix**
 ![alt text](ArrayEqual.png)
