@@ -17,3 +17,7 @@ Check if an array is sorted or not
 **4. ArrayReverse**
 Reverse all elements in an array
 ![alt text](ArrayReverse.png)
+
+**5. ArrayEqual**
+Are arrays equal?
+![alt text](ArrayEqual.png)

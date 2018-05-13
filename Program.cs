@@ -8,10 +8,11 @@ namespace IntrinsicsPlayground
     {
         static void Main(string[] args)
         {
-			BenchmarkRunner.Run<ArrayMax>();
+			//BenchmarkRunner.Run<ArrayMax>();
 			//BenchmarkRunner.Run<ArrayIsSorted>();
 			//BenchmarkRunner.Run<ArrayReverse>();
 			//BenchmarkRunner.Run<ArraySum>();
+			BenchmarkRunner.Run<ArrayEqual>();
         }
     }
 }
