@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Linq;
+using BenchmarkDotNet.Running;
 
 namespace IntrinsicsPlayground
 {
@@ -6,7 +8,10 @@ namespace IntrinsicsPlayground
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+			BenchmarkRunner.Run<ArrayMax>();
+			//BenchmarkRunner.Run<ArrayIsSorted>();
+			//BenchmarkRunner.Run<ArrayReverse>();
+			//BenchmarkRunner.Run<ArraySum>();
         }
     }
 }
