@@ -67,7 +67,7 @@ namespace IntrinsicsPlayground
             }
 
             // seems like there is no simple way to calculate horizontal maximum in __m256 
-            // so let's just do simle FOR than for these 8 values
+            // so let's just do simзle FOR for these 8 values
             var maxArray = new int[8];
             fixed (int* result = &maxArray[0])
                 Avx.Store(result, max);
