@@ -11,22 +11,22 @@ namespace IntrinsicsPlayground
                 return;
 
             int i = 0, len = array.Length;
-            const int batchSize = 4; // 8/16 for AVX2/AVX512
+            const int vecSize = 4; // 8/16 for AVX2/AVX512
             // but _mm256_permute4x64_pd is not exposed in the nuget package yet
 
-            if (len < batchSize * 2)
+            if (len < vecSize * 2)
             {
                 Array.Reverse(array, 0, array.Length);
                 return;
             }
 
-            var chunks = len / batchSize / 2;
+            var chunks = len / vecSize / 2;
             fixed (int* ptr = &array[0])
             {
-                for (; i < chunks * batchSize; i += batchSize)
+                for (; i < chunks * vecSize; i += vecSize)
                 {
                     var leftPtr = ptr + i;
-                    var rightPtr = ptr + len - batchSize - i;
+                    var rightPtr = ptr + len - vecSize - i;
 
                     // load first 4 values and the last ones
                     // shuffle vectors using _mm_shuffle_epi32 
@@ -39,8 +39,8 @@ namespace IntrinsicsPlayground
                 }
             }
 
-            if (chunks * batchSize != len) //in case if there elements in the middle left unreversed
-                Array.Reverse(array, chunks * batchSize, len - chunks * batchSize * 2);
+            if (chunks * vecSize != len) //in case if there elements in the middle left unreversed
+                Array.Reverse(array, chunks * vecSize, len - chunks * vecSize * 2);
         }
     }
 }

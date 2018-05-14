@@ -11,7 +11,7 @@ namespace IntrinsicsPlayground.Tests
         {
             for (int i = 0; i < 1024; i++)
             {
-                var arrayOfFloats1 = Enumerable.Range(0, i).Select(n => n / 2.0).ToArray();
+                var arrayOfFloats1 = Enumerable.Range(0, i).Select(n => n / 2.0f).ToArray();
                 var arrayOfFloats2 = arrayOfFloats1.ToArray();
 
                 var expected = Enumerable.SequenceEqual(arrayOfFloats1, arrayOfFloats2);
@@ -19,9 +19,12 @@ namespace IntrinsicsPlayground.Tests
                 Assert.Equal(expected, actual);
 
                 // so now the arrays are not equal
-                arrayOfFloats2[42] = -1.0;
-                actual = ArrayIntrinsics.SequenceEqual_Avx(arrayOfFloats1, arrayOfFloats2);
-                Assert.False(actual);
+                if (arrayOfFloats2.Length > 42)
+                {
+                    arrayOfFloats2[42] = -1.0f;
+                    actual = ArrayIntrinsics.SequenceEqual_Avx(arrayOfFloats1, arrayOfFloats2);
+                    Assert.False(actual);
+                }
             }
         }
 

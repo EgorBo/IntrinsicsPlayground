@@ -13,9 +13,9 @@ namespace IntrinsicsPlayground
 
         public float[] ArrayOfFloats { get; set; }
 
-        public double[] ArrayOfDoubles { get; set; }
+        public float[] ArrayOfFloats2 { get; set; }
 
-        public double[] ArrayOfDoubles2 { get; set; }
+        public double[] ArrayOfDoubles { get; set; }
 
 
         [GlobalSetup]
@@ -25,8 +25,8 @@ namespace IntrinsicsPlayground
             ArrayOfDoubles = Enumerable.Range(0, TestArrayLength).Select(i => (double)i).ToArray();
             ArrayOfFloats = Enumerable.Range(0, TestArrayLength).Select(i => (float)i).ToArray();
 
-            ArrayOfDoubles2 = ArrayOfDoubles.ToArray();
-            ArrayOfDoubles2[ArrayOfDoubles.Length - 1] = -1; // so it's _almost_ equal to ArrayOfDoubles
+            ArrayOfFloats2 = ArrayOfFloats.ToArray();
+            ArrayOfFloats2[ArrayOfFloats.Length - 1] = -1; // so it's _almost_ equal to ArrayOfDoubles
         }
 
         [Params(10, 121, 32 * 1024)]
