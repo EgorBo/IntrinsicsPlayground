@@ -15,7 +15,7 @@ namespace IntrinsicsPlayground
             const int vecSize = 8;
 
             if (array.Length < vecSize)
-                return Max_Soft(array);
+                return Max_Soft(array, 0, int.MinValue);
 
             int i = 0;
             Vector256<int> max = Avx.SetAllVector256(int.MinValue);
@@ -29,24 +29,32 @@ namespace IntrinsicsPlayground
             }
 
             // seems like there is no simple way to calculate horizontal maximum in __m256 
-            // so let's just do simзle FOR for these 8 values (+ the rest if array.Length % 8 != 0)
-            var maxArray = new int[vecSize + array.Length - i];
-            fixed (int* result = &maxArray[0])
-                Avx.Store(result, max);
+            // so let's just do simple FOR for these 8 values
+            var maxArray = stackalloc int[vecSize];
+            Avx.Store(maxArray, max);
 
-            if (maxArray.Length > vecSize) // copy the rest of array into final array (probably not a good idea)
-                Array.Copy(array, i, maxArray, vecSize, maxArray.Length - vecSize);
+            int finalMax = int.MinValue;
+            for (int j = 0; j < 8; j++) 
+            {
+                // we can't use Max_Soft here
+                var item = maxArray[j];
+                if (item > finalMax)
+                    finalMax = item;
+            }
 
-            return Max_Soft(maxArray);
+            if (i < array.Length - 1) 
+                finalMax = Max_Soft(array, i, finalMax);
+
+            return finalMax;
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private static int Max_Soft(int[] array) // for small chunks
+        private static int Max_Soft(int[] array, int offset, int initialMax) // for small chunks
         {
-            int max = Int32.MinValue;
-            for (int i = 0; i < array.Length; i++)
+            int max = initialMax;
+            for (; offset < array.Length; offset++)
             {
-                var item = array[i];
+                var item = array[offset];
                 if (item > max)
                     max = item;
             }

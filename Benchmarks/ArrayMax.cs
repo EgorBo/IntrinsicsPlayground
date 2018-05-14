@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using BenchmarkDotNet.Attributes;
+using JM.LinqFaster.SIMD;
 
 namespace IntrinsicsPlayground
 {
@@ -15,6 +16,12 @@ namespace IntrinsicsPlayground
         public int Max_Simple()
         {
             return Max_Simple(ArrayOfInts);
+        }
+
+        [Benchmark]
+        public int Max_LinqFasterLib()
+        {
+            return ArrayOfInts.MaxS();
         }
 
         [Benchmark(Baseline = true)]

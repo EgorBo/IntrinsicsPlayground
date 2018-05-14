@@ -29,7 +29,7 @@ namespace IntrinsicsPlayground
             ArrayOfDoubles2[ArrayOfDoubles.Length - 1] = -1; // so it's _almost_ equal to ArrayOfDoubles
         }
 
-        [Params(/*10, 100,*/ 32 * 1024)]
+        [Params(10, 121, 32 * 1024)]
         public int TestArrayLength { get; set; }
     }
 }

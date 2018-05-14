@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using BenchmarkDotNet.Attributes;
+using JM.LinqFaster.SIMD;
 
 namespace IntrinsicsPlayground
 {
@@ -15,6 +16,12 @@ namespace IntrinsicsPlayground
         public float Sum_Simple()
         {
             return Sum_Simple(ArrayOfFloats);
+        }
+
+        [Benchmark]
+        public float Sum_LinqFasterLib()
+        {
+            return ArrayOfFloats.SumS();
         }
 
         [Benchmark(Baseline = true)]
