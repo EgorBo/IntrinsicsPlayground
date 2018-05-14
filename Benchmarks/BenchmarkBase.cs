@@ -6,9 +6,11 @@ using BenchmarkDotNet.Attributes;
 
 namespace IntrinsicsPlayground
 {
+    //[MemoryDiagnoser]
     public class BenchmarkBase
     {
         public int[] ArrayOfInts { get; set; }
+
         public float[] ArrayOfFloats { get; set; }
 
         public double[] ArrayOfDoubles { get; set; }

@@ -28,6 +28,9 @@ namespace IntrinsicsPlayground
             if (array1.Length != array2.Length)
                 return false;
 
+            if (array1.Length < 1) //both are empty
+                return true;
+
             for (int i = 0; i < array1.Length; i++)
             {
                 if (array1[i] != array2[i]) //bounds check for array2, also compare using eps?

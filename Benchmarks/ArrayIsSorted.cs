@@ -18,13 +18,6 @@ namespace IntrinsicsPlayground
         }
 
         [Benchmark]
-        public bool IsSorted_LINQ()
-        {
-            // yeah, it's a stupid idea :)
-            return ArrayOfInts.OrderBy(i => i).SequenceEqual(ArrayOfInts);
-        }
-
-        [Benchmark]
         public bool IsSorted_Sse41()
         {
             return ArrayIntrinsics.IsSorted_Sse41(ArrayOfInts);
@@ -34,6 +27,13 @@ namespace IntrinsicsPlayground
         public bool IsSorted_Avx2()
         {
             return ArrayIntrinsics.IsSorted_Avx2(ArrayOfInts);
+        }
+
+        //[Benchmark]
+        public bool IsSorted_LINQ()
+        {
+            // I am just kidding.. :)
+            return ArrayOfInts.OrderBy(i => i).SequenceEqual(ArrayOfInts);
         }
 
 

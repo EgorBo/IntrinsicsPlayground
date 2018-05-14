@@ -16,6 +16,7 @@
   <ItemGroup>
     <PackageReference Include="BenchmarkDotNet" Version="0.10.14" />
     <PackageReference Include="System.Runtime.Intrinsics.Experimental" Version="4.5.0-rc1" />
+    <PackageReference Include="xunit" Version="2.4.0-beta.1.build3958" />
   </ItemGroup>
 
 </Project>

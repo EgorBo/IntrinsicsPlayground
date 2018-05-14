@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Runtime.Intrinsics.X86;
 using BenchmarkDotNet.Running;
+using IntrinsicsPlayground.Tests;
 
 namespace IntrinsicsPlayground
 {
@@ -12,10 +13,10 @@ namespace IntrinsicsPlayground
                 throw new NotSupportedException(":(");
 
             BenchmarkRunner.Run<ArrayEqual>();
-            BenchmarkRunner.Run<ArrayIsSorted>();
-            BenchmarkRunner.Run<ArrayMax>();
-            BenchmarkRunner.Run<ArrayReverse>();
-            BenchmarkRunner.Run<ArraySum>();
+            //BenchmarkRunner.Run<ArrayIsSorted>();
+            //BenchmarkRunner.Run<ArrayMax>();
+            //BenchmarkRunner.Run<ArrayReverse>();
+            //BenchmarkRunner.Run<ArraySum>();
         }
     }
 }
