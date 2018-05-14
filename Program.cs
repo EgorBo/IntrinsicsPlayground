@@ -1,18 +1,21 @@
 ﻿using System;
-using System.Linq;
+using System.Runtime.Intrinsics.X86;
 using BenchmarkDotNet.Running;
 
 namespace IntrinsicsPlayground
 {
-    class Program
+    unsafe class Program
     {
         static void Main(string[] args)
         {
-            //BenchmarkRunner.Run<ArrayMax>();
-            //BenchmarkRunner.Run<ArrayIsSorted>();
-            //BenchmarkRunner.Run<ArrayReverse>();
+            if (!Sse41.IsSupported || !Avx2.IsSupported)
+                throw new NotSupportedException(":(");
+
+            BenchmarkRunner.Run<ArrayEqual>();
+            BenchmarkRunner.Run<ArrayIsSorted>();
+            BenchmarkRunner.Run<ArrayMax>();
+            BenchmarkRunner.Run<ArrayReverse>();
             BenchmarkRunner.Run<ArraySum>();
-            //BenchmarkRunner.Run<ArrayEqual>();
         }
     }
 }
