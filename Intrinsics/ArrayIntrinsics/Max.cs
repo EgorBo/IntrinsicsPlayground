@@ -34,7 +34,7 @@ namespace IntrinsicsPlayground
             fixed (int* result = &maxArray[0])
                 Avx.Store(result, max);
 
-            if (maxArray.Length > vecSize) // copy the rest of array into final array
+            if (maxArray.Length > vecSize) // copy the rest of array into final array (probably not a good idea)
                 Array.Copy(array, i, maxArray, vecSize, maxArray.Length - vecSize);
 
             return Max_Soft(maxArray);

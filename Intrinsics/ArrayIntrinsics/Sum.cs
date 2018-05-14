@@ -15,7 +15,7 @@ namespace IntrinsicsPlayground
             const int vecSize = 8;
 
             if (array.Length < 8)
-                return Sum_Soft(array);
+                return Sum_Soft(array, 0);
             
             int i = 0;
             Vector256<float> sum = Avx.SetZeroVector256<float>();
@@ -29,23 +29,24 @@ namespace IntrinsicsPlayground
             }
 
             // store __m256 into float[8] and sum all values
-            var result = new float[vecSize + array.Length - i];
-            
-            fixed (float* ptr = &result[0])
-                Avx.Store(ptr, sum);
+            var result = stackalloc float[vecSize];
+            Avx.Store(result, sum);
 
-            if (array.Length > vecSize) // copy the rest of array into final array
-                Array.Copy(array, i, result, vecSize, result.Length - vecSize);
+            float finalSum = *(result + 0) + *(result + 1) + *(result + 2) + *(result + 3)
+                           + *(result + 4) + *(result + 5) + *(result + 6) + *(result + 7);
 
-            return Sum_Soft(array);
+            if (i < array.Length - 1)
+                finalSum += Sum_Soft(array, i);
+
+            return finalSum;
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private static float Sum_Soft(float[] array)
+        private static float Sum_Soft(float[] array, int offset)
         {
             float sum = 0.0f;
-            for (int i = 0; i < array.Length; i++)
-                sum += array[i];
+            for (; offset < array.Length; offset++)
+                sum += array[offset];
             return sum;
         }
     }
