@@ -4,7 +4,7 @@ using JM.LinqFaster.SIMD;
 
 namespace IntrinsicsPlayground
 {
-    public class ArraySum : BenchmarkBase
+    public class ArraySum : ArrayBenchmarkBase
     {
         [Benchmark]
         public float Sum_LINQ()

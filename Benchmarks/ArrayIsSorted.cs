@@ -3,7 +3,7 @@ using BenchmarkDotNet.Attributes;
 
 namespace IntrinsicsPlayground
 {
-    public class ArrayIsSorted : BenchmarkBase
+    public class ArrayIsSorted : ArrayBenchmarkBase
     {
         [Benchmark]
         public bool IsSorted_Simple()

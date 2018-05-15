@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using System.Numerics;
 using Xunit;
 
@@ -7,23 +6,52 @@ namespace IntrinsicsPlayground.Tests
 {
     public class MatrixIntrinsicsTests
     {
+        private static Matrix4x4 GenerateMatrix(int i) => new Matrix4x4(
+            i + 0f,  i + 1f,  i + 2f,  i + 3f,
+            i + 4f,  i + 5f,  i + 6f,  i + 7f,
+            i + 8f,  i + 9f,  i + 10f, i + 11f,
+            i + 12f, i + 13f, i + 14f, i + 15f);
+
         [Fact]
-        public unsafe void MatrixIntrinsicsTests_Sum()
+        public void MatrixIntrinsicsTests_Sum()
         {
-            var arrayOfFloats = Enumerable.Range(0, 1500).Select(n => n / 2.0f).ToArray();
-            for (int i = 32; i < 1024; i++)
+            for (int i = 0; i < 1024; i++)
             {
-                Matrix4x4 m1, m2;
-                fixed (float* ptr = &arrayOfFloats[0])
-                {
-                    m1 = *(Matrix4x4*)(void*)(ptr + 0);
-                    m2 = *(Matrix4x4*)(void*)(ptr + i);
+                var m1 = GenerateMatrix(i);
+                var m2 = GenerateMatrix(-i-1);
 
-                    var expected = m1 + m2;
-                    var actual = MatrixIntrinsics.Sum_Avx(m1, m2);
+                var expected = m1 + m2;
+                var actual = MatrixIntrinsics.Sum_Avx(m1, m2);
 
-                    Assert.True(actual.Equals(expected));
-                }
+                Assert.True(actual.Equals(expected));
+            }
+        }
+
+        [Fact]
+        public void MatrixIntrinsicsTests_Negate()
+        {
+            for (int i = 0; i < 1024; i++)
+            {
+                var m = GenerateMatrix(i);
+
+                var expected = Matrix4x4.Negate(m);
+                var actual = MatrixIntrinsics.Negate_Avx(m);
+
+                Assert.True(actual.Equals(expected));
+            }
+        }
+
+        [Fact]
+        public void MatrixIntrinsicsTests_Multiply()
+        {
+            for (int i = 0; i < 1024; i++)
+            {
+                var m1 = GenerateMatrix(i);
+
+                var expected = m1 * (i + 1);
+                var actual = MatrixIntrinsics.Sum_Multiply(m1, i + 1);
+
+                Assert.True(actual.Equals(expected));
             }
         }
     }

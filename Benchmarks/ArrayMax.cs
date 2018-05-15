@@ -4,7 +4,7 @@ using JM.LinqFaster.SIMD;
 
 namespace IntrinsicsPlayground
 {
-    public class ArrayMax : BenchmarkBase
+    public class ArrayMax : ArrayBenchmarkBase
     {
         [Benchmark]
         public int Max_LINQ()

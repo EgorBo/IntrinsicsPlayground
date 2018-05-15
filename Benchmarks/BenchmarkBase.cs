@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Linq;
+using System.Numerics;
 using BenchmarkDotNet.Attributes;
 
 namespace IntrinsicsPlayground
 {
-    //[MemoryDiagnoser]
-    public class BenchmarkBase
+    [MemoryDiagnoser]
+    public class ArrayBenchmarkBase
     {
         public int[] ArrayOfInts { get; set; }
 
@@ -31,5 +29,21 @@ namespace IntrinsicsPlayground
 
         [Params(10, 121, 32 * 1024)]
         public int TestArrayLength { get; set; }
+    }
+
+    [MemoryDiagnoser]
+    public class MatrixBenchmarkBase
+    {
+        public static Matrix4x4 GenerateMatrix(int i) => new Matrix4x4(
+            i + 0f, i + 1f, i + 2f, i + 3f,
+            i + 4f, i + 5f, i + 6f, i + 7f,
+            i + 8f, i + 9f, i + 10f, i + 11f,
+            i + 12f, i + 13f, i + 14f, i + 15f);
+
+        public static unsafe Matrix4x4 FromArray(float[] array, int offset)
+        {
+            fixed (float* ptr = &array[offset])
+                return *(Matrix4x4*)(void*)ptr;
+        }
     }
 }

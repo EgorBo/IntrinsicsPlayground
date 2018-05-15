@@ -3,7 +3,7 @@ using BenchmarkDotNet.Attributes;
 
 namespace IntrinsicsPlayground
 {
-    public class ArrayEqual : BenchmarkBase
+    public class ArrayEqual : ArrayBenchmarkBase
     {
         [Benchmark]
         public bool ArrayEqual_LINQ_SequenceEqual()

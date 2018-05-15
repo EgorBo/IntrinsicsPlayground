@@ -4,7 +4,7 @@ using BenchmarkDotNet.Attributes;
 
 namespace IntrinsicsPlayground
 {
-    public class ArrayReverse : BenchmarkBase
+    public class ArrayReverse : ArrayBenchmarkBase
     {
         [Benchmark]
         public int[] Reverse_BCL()
