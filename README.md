@@ -26,3 +26,9 @@ Check if an array is sorted or not
 
 Reverse all elements in an array
 ![alt text](Screenshots/ArrayReverse.png)
+
+
+**6. MatrixSum**
+
+Add two matrices (`Matrix4x4`)
+![alt text](Screenshots/MatrixSum.png)
