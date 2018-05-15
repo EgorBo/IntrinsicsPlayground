@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace IntrinsicsPlayground.MatrixIntrinsics
+namespace IntrinsicsPlayground
 {
-    public static partial class MultiplicationIntrinsics
+    public static partial class MatrixIntrinsics
     {
         //TODO
     }

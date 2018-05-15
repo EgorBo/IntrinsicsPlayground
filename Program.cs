@@ -14,8 +14,9 @@ namespace IntrinsicsPlayground
             //BenchmarkRunner.Run<ArrayEqual>();
             //BenchmarkRunner.Run<ArrayIsSorted>();
             //BenchmarkRunner.Run<ArrayMax>();
-            BenchmarkRunner.Run<ArrayReverse>();
+            //BenchmarkRunner.Run<ArrayReverse>();
             //BenchmarkRunner.Run<ArraySum>();
+            BenchmarkRunner.Run<MatrixSum>();
         }
     }
 }
