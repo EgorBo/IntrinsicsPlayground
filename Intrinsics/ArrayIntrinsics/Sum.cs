@@ -42,8 +42,7 @@ namespace IntrinsicsPlayground
                 var result = stackalloc float[vecSize];
                 Avx.Store(result, sum);
 
-                float finalSum = *(result + 0) + *(result + 1) + *(result + 2) + *(result + 3)
-                               + *(result + 4) + *(result + 5) + *(result + 6) + *(result + 7);
+                float finalSum = result[0] + result[1] + result[2] + result[3] + result[4] + result[5] + result[6] + result[7];
 
                 if (i < array.Length)
                     finalSum += Sum_Soft(ptr + i, array.Length - i);

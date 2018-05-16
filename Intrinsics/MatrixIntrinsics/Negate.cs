@@ -12,7 +12,7 @@ namespace IntrinsicsPlayground
             var row34 = Avx.LoadVector256(matrixPtr + 8);
 
             var zeroVec = Avx.SetZeroVector256<float>();
-            Avx.Store(matrixPtr + 0, Avx.Subtract(zeroVec, row12));
+            Avx.Store(matrixPtr + 0, Avx.Subtract(zeroVec, row12)); // or _mm_xor_ps -0.0 ?
             Avx.Store(matrixPtr + 8, Avx.Subtract(zeroVec, row34));
 
             return matrix;
