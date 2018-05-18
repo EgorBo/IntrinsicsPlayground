@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
+using System.Runtime.InteropServices;
 using BenchmarkDotNet.Attributes;
 
 namespace IntrinsicsPlayground
@@ -36,6 +38,14 @@ namespace IntrinsicsPlayground
             return ArrayOfInts.OrderBy(i => i).SequenceEqual(ArrayOfInts);
         }
 
+        [Benchmark]
+        public bool IsSorted_CppPinvoke()
+        {
+            return is_sorted_avx2_generic(ArrayOfInts, ArrayOfInts.Length);
+        }
+
+        [DllImport("NativeLib", CallingConvention = CallingConvention.Cdecl)]
+        static extern bool is_sorted_avx2_generic(int[] array, int count);
 
         // simple implementations to benchmark against intrinsics:
 
