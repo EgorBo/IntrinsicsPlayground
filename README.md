@@ -40,5 +40,19 @@ Reverse all elements in an array
 **6. MatrixSum**
 
 Add two matrices (`Matrix4x4`)
-`var add = matrix1 + matrix2;`
+`var matrix3 = matrix1 + matrix2;`
 ![alt text](Screenshots/MatrixSum.png)
+
+
+**7. MatrixNegate**
+
+Negate a matrix (`Matrix4x4`)
+`matrix = -matrix;`
+![alt text](Screenshots/MatrixNegate.png)
+
+
+**8. MatrixMultiply**
+
+Multiply a matrix by a vector 
+`matrix = matrix * vec;`
+![alt text](Screenshots/MatrixMultiply1.png)
