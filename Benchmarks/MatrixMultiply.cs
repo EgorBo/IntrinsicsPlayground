@@ -24,7 +24,7 @@ namespace IntrinsicsPlayground
             for (int i = 0; i < result.Length; i++)
             {
                 Matrix4x4 m = GenerateMatrix(i + 1);
-                result[i] = MatrixIntrinsics.Sum_Multiply(m, i / 2f);
+                result[i] = MatrixIntrinsics.Multiply_Avx(m, i / 2f);
             }
             return result;
         }

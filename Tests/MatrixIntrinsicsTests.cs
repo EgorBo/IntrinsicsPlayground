@@ -49,7 +49,7 @@ namespace IntrinsicsPlayground.Tests
                 var m1 = GenerateMatrix(i);
 
                 var expected = m1 * (i + 1);
-                var actual = MatrixIntrinsics.Sum_Multiply(m1, i + 1);
+                var actual = MatrixIntrinsics.Multiply_Avx(m1, i + 1);
 
                 Assert.True(actual.Equals(expected));
             }
