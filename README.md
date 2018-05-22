@@ -56,3 +56,10 @@ Negate a matrix (`Matrix4x4`)
 Multiply a matrix by a vector 
 `matrix = matrix * vec;`
 ![alt text](Screenshots/MatrixMultiply1.png)
+
+# Misc
+
+**1. Array.Sort vs DualPivotQuickSort**
+
+Dual pivot quick sort is used in Java for primitive types (`Arrays.sort(int[])`).
+![alt text](Screenshots/DualPivotQuickSort.png)
