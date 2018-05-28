@@ -1,123 +1,136 @@
 ﻿using System;
 using System.Linq;
 using BenchmarkDotNet.Attributes;
-using IntrinsicsPlayground.Misc;
+using BenchmarkDotNet.Attributes.Exporters;
 
 namespace IntrinsicsPlayground.Benchmarks.Misc
 {
-    //[MemoryDiagnoser]
-    public class SortBenchmarks
+    public class SortingAlreadySortedArray : SortBenchmarkBase
     {
-        private int[] _alreadySortedAsc,
+        protected override int[] CurrentArray => _alreadySortedAsc;
+    }
+
+    public class SortingAlreadySortedButReversedArray : SortBenchmarkBase
+    {
+        protected override int[] CurrentArray => _alreadySortedDesc;
+    }
+
+    public class SortingRandomArray : SortBenchmarkBase
+    {
+        protected override int[] CurrentArray => _fullRandom;
+    }
+    public class SortingNearlySortedArray : SortBenchmarkBase
+    {
+        protected override int[] CurrentArray => _nearlySortedAsc;
+    }
+
+    [MarkdownExporterAttribute.GitHub]
+    [RPlotExporter]
+    public class SortBenchmarkBase
+    {
+        protected int[] _alreadySortedAsc,
             _alreadySortedDesc,
             _nearlySortedAsc,
-            _fullRandom1,
-            _fullRandom2;
+            _fullRandom;
 
-        [Params(100, 100000)]
-        public int Count { get; set; }
+        // random array will be inited only once 
+        protected static int[] _staticRandomArray;
 
+        static SortBenchmarkBase()
+        {
+            var rand = new Random();
+            var range = Enumerable.Range(0, 10000).ToArray();
+            _staticRandomArray = range.OrderBy(i => rand.Next()).ToArray();
+        }
+
+        protected virtual int[] CurrentArray { get; }
+
+        [Params(10, 100, 1000, 10000)] public int Count { get; set; }
 
         [GlobalSetup]
         public void GlobalSetup()
         {
-            var rand = new Random();
             var range = Enumerable.Range(0, Count).ToArray();
 
             _alreadySortedAsc = range.ToArray();
             _alreadySortedDesc = range.Reverse().ToArray();
 
             _nearlySortedAsc = _alreadySortedAsc.ToArray();
-            for (int i = 0; i < _nearlySortedAsc.Length - 1; i += rand.Next(5, 15))
+            for (int i = 0; i < _nearlySortedAsc.Length - 1; i += 7)
                 _nearlySortedAsc[i] = 0;
 
-            _fullRandom1 = range.OrderBy(i => rand.Next()).ToArray();
-            _fullRandom2 = range.OrderBy(i => rand.Next()).ToArray();
-        }
-
-
-        [Benchmark]
-        public int[] AlreadySortedAsc_Java()
-        {
-            var array = _alreadySortedAsc.ToArray();
-            DualPivotQuicksort.Sort(array);
-            return array;
+            _fullRandom = _staticRandomArray.Take(Count).ToArray();
         }
 
         [Benchmark]
-        public int[] AlreadySortedAsc__NET()
+        public int[] ArraySort()
         {
-            var array = _alreadySortedAsc.ToArray();
+            var array = CurrentArray.ToArray();
             Array.Sort(array);
             return array;
         }
 
-
         [Benchmark]
-        public int[] AlreadySortedButReversed_Java()
+        public int[] DualPivotQuicksort()
         {
-            var array = _alreadySortedDesc.ToArray();
-            DualPivotQuicksort.Sort(array);
+            var array = CurrentArray.ToArray();
+            IntrinsicsPlayground.Misc.Sorting.DualPivotQuicksort.Sort(array);
             return array;
         }
 
         [Benchmark]
-        public int[] AlreadySortedButReversed__NET()
+        public int[] RadixSort()
         {
-            var array = _alreadySortedDesc.ToArray();
-            Array.Sort(array);
+            var array = CurrentArray.ToArray();
+            IntrinsicsPlayground.Misc.Sorting.RadixSort.Sort(array);
             return array;
         }
 
 
-        [Benchmark]
-        public int[] NearlySortedAsc_Java()
-        {
-            var array = _nearlySortedAsc.ToArray();
-            DualPivotQuicksort.Sort(array);
-            return array;
-        }
+        //[Benchmark]
+        //public int[] ClassicQuickSort()
+        //{
+        //    var array = CurrentArray.ToArray();
+        //    IntrinsicsPlayground.Misc.Sorting.ClassicQuickSort.Sort(array);
+        //    return array;
+        //}
 
-        [Benchmark]
-        public int[] NearlySortedAsc__NET()
-        {
-            var array = _nearlySortedAsc.ToArray();
-            Array.Sort(array);
-            return array;
-        }
+        //[Benchmark]
+        //public int[] HeapSort()
+        //{
+        //    var array = CurrentArray.ToArray();
+        //    IntrinsicsPlayground.Misc.Sorting.HeapSort.Sort(array);
+        //    return array;
+        //}
 
+        //[Benchmark]
+        //public int[] InsertionSort()
+        //{
+        //    var array = CurrentArray.ToArray();
+        //    IntrinsicsPlayground.Misc.Sorting.InsertionSort.Sort(array);
+        //    return array;
+        //}
 
-        [Benchmark]
-        public int[] FullRandom1_Java()
-        {
-            var array = _fullRandom1.ToArray();
-            DualPivotQuicksort.Sort(array);
-            return array;
-        }
+        //[Benchmark]
+        //public int[] MergeSort()
+        //{
+        //    var array = CurrentArray.ToArray();
+        //    IntrinsicsPlayground.Misc.Sorting.MergeSort.Sort(array);
+        //    return array;
+        //}
 
-        [Benchmark]
-        public int[] FullRandom1__NET()
-        {
-            var array = _fullRandom1.ToArray();
-            Array.Sort(array);
-            return array;
-        }
+        //[Benchmark]
+        //public int[] LinqOrderBy()
+        //{
+        //    return CurrentArray.OrderBy(i => i).ToArray();
+        //}
 
-
-        [Benchmark]
-        public int[] FullRandom2_Java()
-        {
-            var array = _fullRandom2.ToArray();
-            DualPivotQuicksort.Sort(array);
-            return array;
-        }
-
-        [Benchmark]
-        public int[] FullRandom2__NET()
-        {
-            var array = _fullRandom2.ToArray();
-            Array.Sort(array);
-            return array;
-        }
+        //[Benchmark]
+        //public int[] BubbleSort()
+        //{
+        //    var array = CurrentArray.ToArray();
+        //    IntrinsicsPlayground.Misc.Sorting.BubbleSort.Sort(array);
+        //    return array;
+        //}
     }
 }

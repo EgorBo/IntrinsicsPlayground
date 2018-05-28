@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace IntrinsicsPlayground.Misc
+namespace IntrinsicsPlayground.Misc.Sorting
 {
-    public class DualPivotQuicksort
+    public static class DualPivotQuicksort
     {
         private const int MAX_RUN_COUNT = 67;
         private const int MAX_RUN_LENGTH = 33;
@@ -61,7 +61,7 @@ namespace IntrinsicsPlayground.Misc
                      * of sentinel, therefore this allows us to avoid the
                      * left range check on each iteration. Moreover, we use
                      * the more optimized algorithm, so called pair insertion
-                     * sort, which is faster (in the context of Quicksort)
+                     * sort, which is faster (in the context of Sort)
                      * than traditional implementation of insertion sort.
                      */
                     for (int k = left; ++left <= right; k = ++left)
@@ -408,7 +408,7 @@ namespace IntrinsicsPlayground.Misc
         static void sort(int[] a, int left, int right,
                  int[] work, int workBase, int workLen)
         {
-            // Use Quicksort on small arrays
+            // Use Sort on small arrays
             if (right - left < QUICKSORT_THRESHOLD)
             {
                 sort(a, left, right, true);
@@ -451,7 +451,7 @@ namespace IntrinsicsPlayground.Misc
 
                 /*
                  * The array is not highly structured,
-                 * use Quicksort instead of merge sort.
+                 * use Sort instead of merge sort.
                  */
                 if (++count == MAX_RUN_COUNT)
                 {
