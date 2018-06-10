@@ -60,9 +60,35 @@ namespace IntrinsicsPlayground.Tests
         }
 
         [Fact]
-        public void ArrayIntrinsics_Max()
+        public void ArrayIntrinsics_IndexOf_Avx2()
         {
             for (int i = 1; i < 1024; i++)
+            {
+                var array = Enumerable.Range(0, i).ToArray();
+                var item = array[array.Length / 2];
+                var expectedIndex = Array.IndexOf(array, item);
+                var actualIndex = ArrayIntrinsics.IndexOf_Avx2(array, item);
+                Assert.Equal(expectedIndex, actualIndex);
+            }
+        }
+
+        [Fact]
+        public void ArrayIntrinsics_Contains_Avx2()
+        {
+            for (int i = 2; i < 1024; i++)
+            {
+                var array = Enumerable.Range(0, i).ToArray();
+                var item = array[array.Length / 2];
+                
+                Assert.True(ArrayIntrinsics.Contains_Avx2(array, item));
+                Assert.False(ArrayIntrinsics.Contains_Avx2(array, -42));
+            }
+        }
+
+        [Fact]
+        public void ArrayIntrinsics_Max()
+        {
+            for (int i = 2; i < 1024; i++)
             {
                 var array = Enumerable.Range(0, i).Concat(Enumerable.Range(0, i).Reverse()).ToArray(); // 0 1 2 3 2 1 0 (for i==4)
 

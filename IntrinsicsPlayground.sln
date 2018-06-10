@@ -2,9 +2,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27428.2037
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IntrinsicsPlayground", "IntrinsicsPlayground.csproj", "{32374FF7-10E3-412C-B1DC-7154563F4E6A}"
-EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Native", "Native\Native.vcxproj", "{BCF99219-D912-40BF-8956-8CDA1D9CA369}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IntrinsicsPlayground", "IntrinsicsPlayground.csproj", "{32374FF7-10E3-412C-B1DC-7154563F4E6A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -28,16 +26,6 @@ Global
 		{32374FF7-10E3-412C-B1DC-7154563F4E6A}.Release|x64.Build.0 = Release|Any CPU
 		{32374FF7-10E3-412C-B1DC-7154563F4E6A}.Release|x86.ActiveCfg = Release|Any CPU
 		{32374FF7-10E3-412C-B1DC-7154563F4E6A}.Release|x86.Build.0 = Release|Any CPU
-		{BCF99219-D912-40BF-8956-8CDA1D9CA369}.Debug|Any CPU.ActiveCfg = Debug|Win32
-		{BCF99219-D912-40BF-8956-8CDA1D9CA369}.Debug|x64.ActiveCfg = Debug|x64
-		{BCF99219-D912-40BF-8956-8CDA1D9CA369}.Debug|x64.Build.0 = Debug|x64
-		{BCF99219-D912-40BF-8956-8CDA1D9CA369}.Debug|x86.ActiveCfg = Debug|Win32
-		{BCF99219-D912-40BF-8956-8CDA1D9CA369}.Debug|x86.Build.0 = Debug|Win32
-		{BCF99219-D912-40BF-8956-8CDA1D9CA369}.Release|Any CPU.ActiveCfg = Release|Win32
-		{BCF99219-D912-40BF-8956-8CDA1D9CA369}.Release|x64.ActiveCfg = Release|x64
-		{BCF99219-D912-40BF-8956-8CDA1D9CA369}.Release|x64.Build.0 = Release|x64
-		{BCF99219-D912-40BF-8956-8CDA1D9CA369}.Release|x86.ActiveCfg = Release|Win32
-		{BCF99219-D912-40BF-8956-8CDA1D9CA369}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

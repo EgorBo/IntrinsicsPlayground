@@ -6,7 +6,7 @@ namespace IntrinsicsPlayground
     public class ArrayEqual : ArrayBenchmarkBase
     {
         [Benchmark]
-        public bool ArrayEqual_LINQ_SequenceEqual()
+        public bool ArrayEqual_LINQ()
         {
             return Enumerable.SequenceEqual(ArrayOfFloats, ArrayOfFloats2);
         }

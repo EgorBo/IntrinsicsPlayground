@@ -6,7 +6,7 @@ namespace IntrinsicsPlayground
     public class MatrixMultiply : MatrixBenchmarkBase
     {
         [Benchmark]
-        public Matrix4x4[] MatrixMultiply1_BCL()
+        public Matrix4x4[] MatrixMultiply_ByScalar_BCL()
         {
             var result = new Matrix4x4[1024];
             for (int i = 0; i < result.Length; i++)
@@ -18,7 +18,7 @@ namespace IntrinsicsPlayground
         }
 
         [Benchmark(Baseline = true)]
-        public Matrix4x4[] MatrixMultiply1_Avx()
+        public Matrix4x4[] MatrixMultiply_ByScalar_Avx()
         {
             var result = new Matrix4x4[1024];
             for (int i = 0; i < result.Length; i++)

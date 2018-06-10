@@ -14,7 +14,7 @@ namespace IntrinsicsPlayground
         }
 
         [Benchmark]
-        public bool IsSorted_Simple2()
+        public bool IsSorted_Simple_Optimized()
         {
             return IsSorted_Simple2(ArrayOfInts);
         }
@@ -38,6 +38,7 @@ namespace IntrinsicsPlayground
             return ArrayOfInts.OrderBy(i => i).SequenceEqual(ArrayOfInts);
         }
 
+		/*
         [Benchmark]
         public bool IsSorted_CppPinvoke()
         {
@@ -46,6 +47,7 @@ namespace IntrinsicsPlayground
 
         [DllImport("NativeLib", CallingConvention = CallingConvention.Cdecl)]
         static extern bool is_sorted_avx2_generic(int[] array, int count);
+		*/
 
         // simple implementations to benchmark against intrinsics:
 

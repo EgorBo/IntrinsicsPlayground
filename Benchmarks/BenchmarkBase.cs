@@ -1,10 +1,12 @@
 ﻿using System.Linq;
 using System.Numerics;
 using BenchmarkDotNet.Attributes;
+using BenchmarkDotNet.Attributes.Exporters;
 
 namespace IntrinsicsPlayground
 {
     [MemoryDiagnoser]
+	[MarkdownExporter]
     public class ArrayBenchmarkBase
     {
         public int[] ArrayOfInts { get; set; }

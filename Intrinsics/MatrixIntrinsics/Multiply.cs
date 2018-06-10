@@ -22,7 +22,7 @@ namespace IntrinsicsPlayground
             return left;
         }
 
-        // not efficient yet
+        // TODO: not efficient yet
         public static Matrix4x4 Multiply_Avx(Matrix4x4 left, Matrix4x4 right)
         {
             float* leftPtr = &left.M11;
