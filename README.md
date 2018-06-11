@@ -86,22 +86,7 @@ var max = arrayOfInts.Max();
 
 Check if an array is sorted or not
 
-|                    Method | TestArrayLength |          Mean |
-|-------------------------- |---------------- |--------------:|
-|           **IsSorted_Simple** |              **10** |      **8.461 ns** |
-| IsSorted_Simple_Optimized |              10 |
-|            IsSorted_Sse41 |              10 |
-|             IsSorted_Avx2 |              10 |
-|                           |                 |
-|           **IsSorted_Simple** |             **121** |    **100.358 ns** |
-| IsSorted_Simple_Optimized |             121 |
-|            IsSorted_Sse41 |             121 |
-|             IsSorted_Avx2 |             121 |
-|                           |                 |
-|           **IsSorted_Simple** |           **32768** | **23,634.628 ns** |
-| IsSorted_Simple_Optimized |           32768 |
-|            IsSorted_Sse41 |           32768 |
-|             IsSorted_Avx2 |           32768 |
+TODO: results
 
 **5. ArrayReverse**
 
