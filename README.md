@@ -12,7 +12,8 @@ Intel Core i7-4980HQ CPU 2.80GHz (Haswell), 1 CPU, 8 logical and 4 physical core
   DefaultJob : .NET Core 2.1.0 (CoreCLR 4.6.26515.07, CoreFX 4.6.26515.06), 64bit RyuJIT
 ```
 
-**1. ArraySum**
+
+## **1. ArraySum**
 
 Sum of elements in an array of floats 
 ```csharp
@@ -36,7 +37,8 @@ var sum = arrayOfFloats.Sum();
 | Sum_LinqFasterLib |           32768 |   3,826.928 ns |   1.01 |
 |           Sum_Avx |           32768 |   3,784.930 ns |   1.00 |
 
-**2. ArrayEqual**
+
+## **2. ArrayEqual**
 
 Are arrays of floats equal?
 ```csharp
@@ -58,7 +60,7 @@ var equal = arrayOfFloats1.SequenceEqual(arrayOfFloats2);
 |   ArrayEqual_AVX2 |           32768 |   6,626.225 ns |   1.00 |
 
 
-**3. ArrayMax**
+## **3. ArrayMax**
 
 Max element in an array of ints 
 ```csharp
@@ -82,13 +84,15 @@ var max = arrayOfInts.Max();
 | Max_LinqFasterLib |           32768 |   2,731.388 ns |   1.31 |
 |           Max_Avx |           32768 |   2,096.625 ns |   1.00 |
 
-**4. ArrayIsSorted**
+
+## **4. ArrayIsSorted**
 
 Check if an array is sorted or not
 
 TODO: results
 
-**5. ArrayReverse**
+
+## **5. ArrayReverse**
 
 Reverse all elements in an array
 
@@ -126,7 +130,8 @@ int index = Array.IndexOf(arrayOfInts, element);
 |  **IndexOf_BCL** |           **32768** | **8,361.998 ns** |   **4.16** |
 | IndexOf_Avx2 |           32768 | 2,008.645 ns |   1.00 |
 
-**7. MatrixSum**
+
+## **7. MatrixSum**
 
 Add two matrices (`Matrix4x4`)
 
@@ -139,7 +144,8 @@ var matrix3 = matrix1 + matrix2;
 | MatrixSum_BCL | 29.85 us |   1.09 |
 | MatrixSum_Avx | 27.36 us |   1.00 |
 
-**8. MatrixNegate**
+
+## **8. MatrixNegate**
 
 Negate a matrix (`Matrix4x4`)
 ```csharp
@@ -151,7 +157,8 @@ matrix = -matrix;
 | MatrixNegate_BCL | 37.31 us |   1.07 |
 | MatrixNegate_Avx | 34.77 us |   1.00 |
 
-**9. MatrixMultiply**
+
+## 9. MatrixMultiply 
 
 Multiply a matrix by a vector 
 ```csharp
@@ -166,7 +173,7 @@ matrix = matrix * vec;
 
 # Misc
 
-**1. Array.Sort vs DualPivotQuickSort**
+## **1. Array.Sort vs DualPivotQuickSort**
 
 Dual pivot quick sort is used in Java for primitive types (`Arrays.sort(int[])`).
 ![alt text](Screenshots/DualPivotQuickSort.png)
