@@ -1,6 +1,17 @@
 # IntrinsicsPlayground
 
 My toys to play with intrinsics in pure C# (see `System.Runtime.Intrinsics.Experimental`)
+Environment:
+``` ini
+
+BenchmarkDotNet=v0.10.14, OS=macOS High Sierra 10.13.3 (17D47) [Darwin 17.4.0]
+Intel Core i7-4980HQ CPU 2.80GHz (Haswell), 1 CPU, 8 logical and 4 physical cores
+.NET Core SDK=2.1.300
+  [Host]     : .NET Core 2.1.0 (CoreCLR 4.6.26515.07, CoreFX 4.6.26515.06), 64bit RyuJIT
+  DefaultJob : .NET Core 2.1.0 (CoreCLR 4.6.26515.07, CoreFX 4.6.26515.06), 64bit RyuJIT
+
+
+```
 
 **1. ArraySum**
 
