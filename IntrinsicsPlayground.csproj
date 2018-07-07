@@ -13,8 +13,8 @@
   <ItemGroup>
     <PackageReference Include="BenchmarkDotNet" Version="0.10.14" />
     <PackageReference Include="LinqFaster.SIMD" Version="1.0.0" />
-    <PackageReference Include="System.Runtime.CompilerServices.Unsafe" Version="4.5.0" />
-    <PackageReference Include="System.Runtime.Intrinsics.Experimental" Version="4.6.0-preview1-26607-01" />
+    <PackageReference Include="System.Runtime.CompilerServices.Unsafe" Version="4.5.1" />
+    <PackageReference Include="System.Runtime.Intrinsics.Experimental" Version="4.6.0-preview1-26706-05" />
     <PackageReference Include="xunit" Version="2.3.1" />
   </ItemGroup>
 </Project>
