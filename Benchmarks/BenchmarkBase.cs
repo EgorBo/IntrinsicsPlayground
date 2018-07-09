@@ -6,7 +6,7 @@ using BenchmarkDotNet.Attributes.Exporters;
 namespace IntrinsicsPlayground
 {
     [MemoryDiagnoser]
-	[MarkdownExporter]
+    [MarkdownExporter]
     public class ArrayBenchmarkBase
     {
         public int[] ArrayOfInts { get; set; }
