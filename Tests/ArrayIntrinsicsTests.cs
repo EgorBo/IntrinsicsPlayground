@@ -100,6 +100,20 @@ namespace IntrinsicsPlayground.Tests
         }
 
         [Fact]
+        public void ArrayIntrinsics_Max_float()
+        {
+            for (int i = 2; i < 1024; i++)
+            {
+                var array = Enumerable.Range(0, i).Concat(Enumerable.Range(0, i).Reverse()).Select(t => (float)t).ToArray(); // 0 1 2 3 2 1 0 (for i==4)
+
+                var expected = array.Max();
+                var actual = ArrayIntrinsics.Max_Avx(array);
+
+                Assert.Equal(expected, actual);
+            }
+        }
+
+        [Fact]
         public void ArrayIntrinsics_Sum()
         {
             for (int i = 0; i < 1024; i++)
