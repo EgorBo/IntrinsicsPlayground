@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
   </PropertyGroup>
@@ -11,10 +11,8 @@
     <None Remove="Screenshots\**" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="BenchmarkDotNet" Version="0.10.14" />
+    <PackageReference Include="BenchmarkDotNet" Version="0.11.3" />
     <PackageReference Include="LinqFaster.SIMD" Version="1.0.0" />
-    <PackageReference Include="System.Runtime.CompilerServices.Unsafe" Version="4.5.1" />
-    <PackageReference Include="System.Runtime.Intrinsics.Experimental" Version="4.6.0-preview1-26706-05" />
-    <PackageReference Include="xunit" Version="2.3.1" />
+    <PackageReference Include="xunit" Version="2.4.1" />
   </ItemGroup>
 </Project>
